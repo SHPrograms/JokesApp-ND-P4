@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JokeAndroidLibrary</string>
+    <string name="joke_tv_string">Message in Activity from Android Library:</string>
+</resources>
