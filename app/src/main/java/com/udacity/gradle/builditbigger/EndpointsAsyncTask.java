@@ -25,7 +25,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
 
     AsyncTaskCallListener listener;
 
-    public EndpointsAsyncTask(AsyncTaskCallListener listener){
+    public EndpointsAsyncTask(AsyncTaskCallListener listener) {
         this.listener = listener;
         Log.d(DEBUG, CLASS + "constructor");
     }
@@ -33,8 +33,12 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
 
-        if(myApiService == null) {  // Only do this once
+        if (myApiService == null) {  // Only do this once
             Log.d(DEBUG, CLASS + "doInBackground - once.");
+
+            // Locally -> I can't test it because
+            // https://discussions.udacity.com/t/gradle-task-and-localhost-8080-error/558065
+
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
@@ -47,7 +51,14 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
+
             // end options for devappserver
+
+            // TODO: change to locally before submit
+/*
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                    .setRootUrl("https://jokesapp-nd-p4.appspot.com/_ah/api/");
+*/
 
             myApiService = builder.build();
         }

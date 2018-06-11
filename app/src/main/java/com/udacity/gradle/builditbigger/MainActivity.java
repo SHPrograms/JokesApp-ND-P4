@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallList
         intent.putExtra("joke", jokes.getJoke());
         startActivity(intent);
 */
-
-        // I cant test it because https://discussions.udacity.com/t/gradle-task-and-localhost-8080-error/558065
         new EndpointsAsyncTask(this).execute(new Pair<Context, String>(this, jokes.getJoke()));
 /*
         EndpointsAsyncTask asyncTask = new EndpointsAsyncTask();
