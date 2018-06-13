@@ -4,6 +4,7 @@
     <application>myApplicationId</application>
     <!-- TODO: change to locally before submit -->
     <!--  <application>jokesapp-nd-p4</application>  -->
+    <runtime>java8</runtime>
     <version>1</version>
     <threadsafe>true</threadsafe>
 
