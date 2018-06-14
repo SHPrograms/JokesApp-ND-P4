@@ -3,10 +3,8 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-//import android.support.v4.util.Pair;
 import android.util.Pair;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -35,7 +33,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 
         if (myApiService == null) {  // Only do this once
             Log.d(DEBUG, CLASS + "doInBackground - once.");
-/*
+
             // Locally -> I can't test it because
             // https://discussions.udacity.com/t/gradle-task-and-localhost-8080-error/558065
             // but I checked it thanks to other students so it should work :)
@@ -51,11 +49,12 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
-*/
 
             // So I used this and it is also works...
+/*
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://jokesapp-nd-p4.appspot.com/_ah/api/");
+*/
 
 
             myApiService = builder.build();

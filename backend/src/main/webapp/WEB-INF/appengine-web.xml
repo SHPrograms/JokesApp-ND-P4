@@ -6,7 +6,7 @@
         <application>jokesapp-nd-p4</application>
         <application>myApplicationId</application>
     -->
-    <application>jokesapp-nd-p4</application>
+    <application>myApplicationId</application>
     <runtime>java8</runtime>
     <version>1</version>
     <threadsafe>true</threadsafe>
