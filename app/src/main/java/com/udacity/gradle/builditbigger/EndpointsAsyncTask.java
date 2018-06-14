@@ -24,18 +24,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     private static MyApi myApiService = null;
     private Context context;
 
-//    AsyncTaskCallListener listener;
-
-/*
-    public EndpointsAsyncTask(Context context, AsyncTaskCallListener listener) {
-        this.listener = listener;
-        this.context = context;
-        Log.d(DEBUG, CLASS + "constructor + listener");
-    }
-*/
-
     public EndpointsAsyncTask(Context context) {
-//        this.listener = null;
         this.context = context;
         Log.d(DEBUG, CLASS + "constructor");
     }
@@ -43,9 +32,10 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
 
+
         if (myApiService == null) {  // Only do this once
             Log.d(DEBUG, CLASS + "doInBackground - once.");
-
+/*
             // Locally -> I can't test it because
             // https://discussions.udacity.com/t/gradle-task-and-localhost-8080-error/558065
             // but I checked it thanks to other students so it should work :)
@@ -61,23 +51,19 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
+*/
 
             // So I used this and it is also works...
-/*
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://jokesapp-nd-p4.appspot.com/_ah/api/");
-*/
 
 
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        String name = params[0].second;
-
-        Log.d(DEBUG, CLASS + "doInBackground. name: " + name);
+        Log.d(DEBUG, CLASS + "doInBackground");
         try {
-            return myApiService.tellJoke(name).execute().getData();
+            return myApiService.tellJoke().execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }
@@ -86,10 +72,10 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     @Override
     protected void onPostExecute(String result) {
         Log.d(DEBUG, CLASS + "onPostExecute. result send to MainActivity.");
+
         Intent intent = new Intent(context, JokesActivity.class);
         intent.putExtra("joke", result);
         context.startActivity(intent);
 
-//            listener.onPostExecuteAT(result);
     }
 }

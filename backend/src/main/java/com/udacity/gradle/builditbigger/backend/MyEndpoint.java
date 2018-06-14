@@ -22,7 +22,7 @@ import javax.inject.Named;
 public class MyEndpoint {
 
     @ApiMethod(name = "tellJoke")
-    public MyBean tellJoke(@Named("name") String name) {
+    public MyBean tellJoke() {
         MyBean response = new MyBean();
         JokesList jokesList = new JokesList();
         response.setData(jokesList.getJoke());
