@@ -12,21 +12,31 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.sh.study.udacitynano.jokeandroidlibrary.JokesActivity;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
 
-class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     private static String DEBUG = "SHLog: app:";
     private static String CLASS = "EndpointsAsyncTask:";
 
     private static MyApi myApiService = null;
     private Context context;
 
-    AsyncTaskCallListener listener;
+//    AsyncTaskCallListener listener;
 
-    public EndpointsAsyncTask(AsyncTaskCallListener listener) {
+/*
+    public EndpointsAsyncTask(Context context, AsyncTaskCallListener listener) {
         this.listener = listener;
+        this.context = context;
+        Log.d(DEBUG, CLASS + "constructor + listener");
+    }
+*/
+
+    public EndpointsAsyncTask(Context context) {
+//        this.listener = null;
+        this.context = context;
         Log.d(DEBUG, CLASS + "constructor");
     }
 
@@ -77,6 +87,10 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
     @Override
     protected void onPostExecute(String result) {
         Log.d(DEBUG, CLASS + "onPostExecute. result send to MainActivity.");
-        listener.onPostExecuteAT(result);
+        Intent intent = new Intent(context, JokesActivity.class);
+        intent.putExtra("joke", result);
+        context.startActivity(intent);
+
+//            listener.onPostExecuteAT(result);
     }
 }

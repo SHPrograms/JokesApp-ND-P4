@@ -16,7 +16,8 @@ import com.sh.study.udacitynano.jokeandroidlibrary.JokesActivity;
 import com.sh.study.udacitynano.jokejavalibrary.JokesList;
 
 
-public class MainActivity extends AppCompatActivity implements AsyncTaskCallListener {
+public class MainActivity extends AppCompatActivity {
+        //implements AsyncTaskCallListener {
     private static String DEBUG = "SHLog: app:";
     private static String CLASS = "MainActivity:";
 
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallList
         startActivity(intent);
 */
         new EndpointsAsyncTask(this).execute(new Pair<Context, String>(this, jokes.getJoke()));
+
+        // for testing...
 /*
         EndpointsAsyncTask asyncTask = new EndpointsAsyncTask();
         asyncTask.execute(new Pair<Context, String>(this, "Hey"));
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallList
 
     }
 
+    // version with listener
+/*
     @Override
     public void onPostExecuteAT(String string) {
         Log.d(DEBUG, CLASS + "onPostExecuteAT: String: " + string);
@@ -80,4 +85,5 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallList
         intent.putExtra("joke", string);
         startActivity(intent);
     }
+*/
 }
