@@ -66,10 +66,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("joke", jokes.getJoke());
         startActivity(intent);
 */
-        Intent intent = new Intent(this, JokesActivity.class);
         new EndpointsAsyncTask(this).execute(new Pair<Context, String>(this, jokes.getJoke()));
-        intent.putExtra("joke", jokes.getJoke());
-        startActivity(intent);
 
 
         // for testing...
